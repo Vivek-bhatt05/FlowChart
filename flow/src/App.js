@@ -2,14 +2,15 @@ import ReactFlow, { addEdge, applyEdgeChanges, applyNodeChanges, Background, Con
 import './App.css';
 import 'reactflow/dist/style.css';
 import { useCallback, useState } from 'react';
-import { initialEdges, initialNodes, nodeTypes } from './components/InititalNode';
+import { initialEdges, initialNodes} from './components/InititalNode';
 import nodeColor from './components/NodeColor'
+import { nodeTypes } from './components/InititalNode';
 
 
 function App() {
   const [nodes, setNodes] = useNodesState(initialNodes);
   const [edges, setEdges] = useEdgesState(initialEdges);
-  const [variant, setVariant] = useState('cross');
+  const [variant, setVariant] = useState('dots');
   const onNodesChange = useCallback(
     (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
     [setNodes]
@@ -32,6 +33,7 @@ function App() {
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
         nodeTypes={nodeTypes}
+        fitView
         >
         <Controls />
         <MiniMap nodeColor={nodeColor} />
